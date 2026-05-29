@@ -95,6 +95,7 @@ by kind.
 |---|---|---|
 | `/dlms:tweak` | compressed cycle | ≤2 files, no schema/auth — typos, colors, copy |
 | `/dlms:patch` | Orient+Decide+Act | multi-file, needs invariants. Spawns up to 3 sub-agents when complex |
+| `/dlms:plan` | Orient+Decide | constrain plan before edits using invariants & decisions |
 | `/dlms:check` | Verify+Remember | runs against staged diff. 2 sub-agents: invariant audit + test impact |
 | `/dlms:trace` | Observe | KB introspection: "where does X live, who writes Y" |
 
@@ -195,6 +196,7 @@ Read-only skills may continue but refuse new atom drafts. Override:
 |---|---|---|---|
 | `:tweak` | 0 | NEVER (single-context only) | 0 |
 | `:patch` | 0 | repos_touched>1 OR schema_changed OR diff>100 LOC OR cross_cutting_hits≥3 | 3 |
+| `:plan` | 0 | NEVER (planning only) | 0 |
 | `:check` | 2 | ALWAYS (invariant audit + test impact) | 2 |
 | `:trace` | N | one per workspace root matching query | 5 |
 | any | +1 | `--deep` flag | — |
