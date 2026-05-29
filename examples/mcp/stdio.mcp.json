@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "dlms": {
+      "command": "dlms",
+      "args": ["mcp"],
+      "cwd": "/path/to/your-repo"
+    }
+  }
+}

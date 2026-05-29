@@ -1,0 +1,51 @@
+[project]
+name = "dlms"
+version = "0.1.0"
+description = "Dynamic Living Memory Substrate — typed atom store and MCP server for Claude Code"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "DLMS contributors" }]
+dependencies = [
+  "typer>=0.12",
+  "rich>=13.7",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+  "ruff>=0.5",
+]
+embed = [
+  "sentence-transformers>=2.7",
+]
+vec = [
+  "sqlite-vec>=0.1.0",
+]
+mcp = [
+  "fastmcp>=0.2",
+]
+
+[project.scripts]
+dlms = "dlms_cli.cli:app"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra -q"
+
+[build-system]
+requires = ["hatchling>=1.21"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/dlms_cli"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"schema.sql" = "dlms_cli/schema.sql"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
